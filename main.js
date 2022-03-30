@@ -71,8 +71,16 @@ const handleNumber = (e) => {
 }
 
 const handleOperator = (e) => {
+  if (operator=="" && valueA.length > 0)  {
   operator = e.target.innerHTML;
   input.value += e.target.innerHTML;
+  }
+  else if (operator.length > 0) {
+  handleEqual(); //this will make sure the existing operation is performed before the next operation
+  }
+  else if (valueA.length == 0) {
+    input.value = "Please enter a value first"; //this will prevent operator from being passed before valueA
+  }
 }
 
 const handleChangeSign = (e) => {
