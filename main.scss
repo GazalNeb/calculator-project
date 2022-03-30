@@ -1,17 +1,49 @@
 .container {
-  margin: 10vh auto;
-  width: 15rem;
-  height: 15rem;
-  background-color: lightgrey;
+  margin: 10rem auto;
+  width: 24rem;
+  height: 28rem;
+  background-color: rosybrown;
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);
+  border-radius: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
    
   .display-bar {
-    margin: auto;
+    margin: 2rem auto;
+    width: 15rem;
+    height: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);
+    border: none;
+    background-color: #fafafa;
+    font-family: sans-serif;
+    font-size: large;
   }
   .buttons {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 1rem;
+
+    .button {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 2rem;
+      border:#4B4747;
+      color: #fafafa;
+      font-size: large;
+      background-color: #4B4747;
+
+      &--grey {
+        background-color: #708090;
+      }
+
+      &--color {
+        background-color: #cd5c5c;
+      }
+    }
+
   }
+
+  
 }
