@@ -5,7 +5,7 @@
 //Clicking on the operators should perform a function using the values clicked before and after it
 
 //Small-Steps:
-//get the button values from html
+//get the button and input values from html
 
 const buttons = document.querySelectorAll("button");
 // const numbers = document.getElementsByClassName("number");
@@ -31,7 +31,7 @@ buttons.forEach(button => {
         // two if statements, one checking for '=' one for 'C' first
         //if statments checking for operators and functions to be performed on them
         // store operators and numbers in variables                                       
-
+        // if else statements to check the value of displayValue
         if (displayValue == "C") {
           console.log("if 1");
           operator = "";
@@ -72,36 +72,43 @@ buttons.forEach(button => {
         // input.value += displayValue; //this will add value of each button to the display-bar one after the other     
       })
 
-      // method for = ,we have two values present otherwise do nothing
-
       const operation = () => {
 
         if (operator == "+") {
           console.log("return");
           input.value = parseInt(valueA) + parseInt(valueB);
           valueA =  input.value;
-          valueB = "";
+          valueB = "";  //this will make sure the value of operator and valueB is empty string for the next calculation
+          operator = ""; 
         } else if (operator == "-") {
           input.value = parseInt(valueA) - parseInt(valueB);
           valueA =  input.value;
           valueB = "";
+          operator = "";
         } else if (operator == "*") {
           input.value = parseInt(valueA) * parseInt(valueB);
           valueA =  input.value;
           valueB = "";
+          operator = "";
         } else if (operator == "÷") {
           input.value = parseInt(valueA) / parseInt(valueB);
           valueA =  input.value;
           valueB = "";
+          operator = "";
         }
         else if (operator == "%") {
           input.value = (parseInt(valueA)/100) * parseInt(valueB);
           valueA =  input.value;
           valueB = "";
+          operator = "";
         }
       };
 
 
       //separate the values entered into the inputbox by the operator in between them
       // find a way to store the two values on which a given operator will act
+      // method for = , we have two values present otherwise do nothing
+
+      //Problems: If we click multiple operators, the operator value is replaced and valueB is added to. 
+      // If the operator is typed before valueA, NaN is displayed (potential fix: not allow the operators to be entered before valueA)
     })
