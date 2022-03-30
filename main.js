@@ -79,15 +79,25 @@ buttons.forEach(button => {
         if (operator == "+") {
           console.log("return");
           input.value = parseInt(valueA) + parseInt(valueB);
+          valueA =  input.value;
+          valueB = "";
         } else if (operator == "-") {
           input.value = parseInt(valueA) - parseInt(valueB);
+          valueA =  input.value;
+          valueB = "";
         } else if (operator == "*") {
           input.value = parseInt(valueA) * parseInt(valueB);
+          valueA =  input.value;
+          valueB = "";
         } else if (operator == "÷") {
           input.value = parseInt(valueA) / parseInt(valueB);
+          valueA =  input.value;
+          valueB = "";
         }
         else if (operator == "%") {
           input.value = (parseInt(valueA)/100) * parseInt(valueB);
+          valueA =  input.value;
+          valueB = "";
         }
       };
 
