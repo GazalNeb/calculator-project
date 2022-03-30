@@ -8,107 +8,111 @@
 //get the button and input values from html
 
 const buttons = document.querySelectorAll("button");
-// const numbers = document.getElementsByClassName("number");
-console.log(buttons);
-console.log(buttons[0].innerHTML);
-// console.log(numbers);
-
+const numberButtons = document.querySelectorAll(".number");
+const operatorButtons = document.querySelectorAll(".operator");
+const cancelButton = document.querySelectorAll(".cancel");
+const changeSignButton = document.querySelectorAll(".change-sign");
+const equalButton = document.querySelectorAll(".equal");
 const input = document.querySelector("input");
-
-// buttons[3].addEventListener("click", (event) => {
-//   input.value= buttons[3].innerHTML;
-// });
 
 //declare empty variables where you will be saving numbers and operators here, as methods for operators will require work on them
 let operator = "";
 let valueA = "";
 let valueB = "";
 
-buttons.forEach(button => {
-      button.addEventListener("click", (event) => {
-        // console.log(event);
-        let displayValue = event.target.innerHTML;
-        // two if statements, one checking for '=' one for 'C' first
-        //if statments checking for operators and functions to be performed on them
-        // store operators and numbers in variables                                       
-        // if else statements to check the value of displayValue
-        if (displayValue == "C") {
-          console.log("if 1");
-          operator = "";
-          valueA = "";
-          valueB = "";
-          input.value = "";
+const handleCancel = (e) => {
+  operator = "";
+  valueA = "";
+  valueB = "";
+  input.value = "";
+}
 
-        } else if (displayValue == "=") {
-          console.log("if 2");
-          operation();
+const handleEqual = (e) => {
+  valueA = parseFloat(valueA); 
+  valueB = parseFloat(valueB);
+  if (operator == "+") {
+    console.log("return");
+    input.value = valueA + valueB;
+    valueA =  input.value;
+    valueB = "";  
+    operator = ""; 
+  } else if (operator == "-") {
+    input.value = valueA - valueB;
+    valueA =  input.value;
+    valueB = "";
+    operator = "";
+  } else if (operator == "*") {
+    input.value = valueA * valueB;
+    valueA =  input.value;
+    valueB = "";
+    operator = "";
+  } else if (operator == "÷") {
+    input.value = valueA/valueB;
+    valueA =  input.value;
+    valueB = "";
+    operator = "";
+  }
+  else if (operator == "%") {
+    input.value = valueA/100 * valueB;
+    valueA =  input.value;
+    valueB = "";
+    operator = "";
+  }
+}
 
-        } else if (displayValue == "+" || displayValue == "-" || displayValue == "*" || displayValue == "÷" || displayValue == "%") {
-          console.log("if 3");
-          operator = displayValue;
-          input.value += displayValue;
+const handleNumber = (e) => {
+  if (operator.length > 0) {
+    valueB += e.target.innerHTML;
+    input.value = valueA + operator + valueB;
+  } else {
+    valueA += e.target.innerHTML;
+    input.value = valueA;
+  }
+}
 
-        } else if (displayValue == "+/-") {
-          console.log("if 4");
-          if (valueB.length > 0) {
-            valueB = -valueB;
-            input.value = valueA + operator + valueB;
+const handleOperator = (e) => {
+  operator = e.target.innerHTML;
+  input.value += e.target.innerHTML;
+}
 
-          } else if (valueA.length > 0) {
-            valueA = -valueA;
-            input.value = valueA + operator;
-          }
+const handleChangeSign = (e) => {
+  if (valueB.length > 0) {
+    valueB = -valueB;
+    input.value = valueA + operator + valueB;
 
-        } else {
-          console.log("if 5");
-          if (operator.length > 0) {
-            valueB += displayValue;
-            input.value = valueA + operator + valueB;
-          } else {
-            valueA += displayValue;
-            input.value = valueA;
-          }
-        }
-        // input.value += displayValue; //this will add value of each button to the display-bar one after the other     
-      })
+  } else if (valueA.length > 0) {
+    valueA = -valueA;
+    input.value = valueA + operator;
+  } 
+}
 
-      const operation = () => {
-        if (operator == "+") {
-          console.log("return");
-          input.value = parseFloat(valueA) + parseFloat(valueB);
-          valueA =  input.value;
-          valueB = "";  //this will make sure the value of operator and valueB is empty string for the next calculation
-          operator = ""; 
-        } else if (operator == "-") {
-          input.value = parseFloat(valueA) - parseFloat(valueB);
-          valueA =  input.value;
-          valueB = "";
-          operator = "";
-        } else if (operator == "*") {
-          input.value = parseFloat(valueA) * parseFloat(valueB);
-          valueA =  input.value;
-          valueB = "";
-          operator = "";
-        } else if (operator == "÷") {
-          input.value = parseFloat(valueA) / parseFloat(valueB);
-          valueA =  input.value;
-          valueB = "";
-          operator = "";
-        }
-        else if (operator == "%") {
-          input.value = (parseFloat(valueA)/100) * parseFloat(valueB);
-          valueA =  input.value;
-          valueB = "";
-          operator = "";
-        }
-      };
+cancelButton.forEach(button => {
+  button.addEventListener("click", (event) => handleCancel(event))
+})
 
-    })
+equalButton.forEach(button => {
+  button.addEventListener("click", (event) => handleEqual(event))
+})
+
+numberButtons.forEach(button => {
+  button.addEventListener("click", (event) => handleNumber(event))
+})
+
+operatorButtons.forEach(button => {
+  button.addEventListener("click", (event) => handleOperator(event))
+})
+
+changeSignButton.forEach(button => {
+  button.addEventListener("click", (event) => handleChangeSign(event))
+})
+
+
+
       //separate the values entered into the inputbox by the operator in between them
       // find a way to store the two values on which a given operator will act 
       // method for = , we have two values present otherwise do nothing
 
-      //Problems: DOESN'T PERFORM MULTIPLE OPERATIONS.If we click multiple operators, the operator value is replaced and valueB is added to. 
+      //Problems: DOESN'T PERFORM MULTIPLE OPERATIONS.If we click multiple operators, the operator value is replaced and valueB is added to. (Potential fix: If there is a new operator, make sure the earlier operation is performed)
       // If the operator is typed before valueA, NaN is displayed (potential fix: not allow the operators to be entered before valueA or just let NaN be displayed)
       //decimal numbers are not working as decimals (potential fix: change parseInt to parseFloat, as it returns a whole number)
    
