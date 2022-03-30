@@ -1,0 +1,16 @@
+.container {
+  margin: 10vh auto;
+  width: 15rem;
+  height: 15rem;
+  background-color: lightgrey;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.container .display-bar {
+  margin: auto;
+}
+.container .buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
