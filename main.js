@@ -27,36 +27,35 @@ const handleCancel = (e) => {
   input.value = "";
 }
 
+const setFinalValues = (newValue) => {
+    valueA =  newValue;
+    valueB = "";  
+    operator = "";
+}
 const handleEqual = (e) => {
   valueA = parseFloat(valueA); 
   valueB = parseFloat(valueB);
   if (operator == "+") {
     console.log("return");
     input.value = valueA + valueB;
-    valueA =  input.value;
-    valueB = "";  
-    operator = ""; 
+    setFinalValues(input.value);
+
   } else if (operator == "-") {
     input.value = valueA - valueB;
-    valueA =  input.value;
-    valueB = "";
-    operator = "";
+    setFinalValues(input.value);
+
   } else if (operator == "*") {
     input.value = valueA * valueB;
-    valueA =  input.value;
-    valueB = "";
-    operator = "";
+    setFinalValues(input.value);
+
   } else if (operator == "÷") {
     input.value = valueA/valueB;
-    valueA =  input.value;
-    valueB = "";
-    operator = "";
+    setFinalValues(input.value);
+
   }
   else if (operator == "%") {
     input.value = valueA/100 * valueB;
-    valueA =  input.value;
-    valueB = "";
-    operator = "";
+    setFinalValues(input.value);
   }
 }
 
@@ -95,7 +94,7 @@ const handleChangeSign = (e) => {
 }
 
 cancelButton.forEach(button => {
-  button.addEventListener("click", (event) => handleCancel(event))
+  button.addEventListener("click", handleCancel)
 })
 
 equalButton.forEach(button => {
