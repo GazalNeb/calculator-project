@@ -7,6 +7,7 @@
 //Small-Steps:
 //get the button and input values from html
 
+console.log("hello");
 const numberButtons = document.querySelectorAll(".number");
 const operatorButtons = document.querySelectorAll(".operator");
 const cancelButton = document.querySelector(".cancel");
