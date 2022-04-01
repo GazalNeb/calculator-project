@@ -9,30 +9,28 @@ const changeSignButton = document.querySelector(".change-sign");
 const equalButton = document.querySelector(".equal");
 const input = document.querySelector("input");
 
-//declare empty variables to save numbers and operators globally, as functions will require work on them
+//declare empty variables to save numbers and operator globally, as the functions below will require work on them. valueA is the value added before the operator, and valueB is the value added after the operator.
 let operator = "";
 let valueA = "";
-let valueB = "";
+let valueB = ""; 
 
-//functions to handle button clicks of different types
+//functions to handle button clicks of different types:
 const handleCancel = (e) => {
   operator = "";
   valueA = "";
   valueB = "";
-  input.value = "";
+  input.value = ""; //this ensures all variables and input value become empty strings when cancel button is clicked.
 }
 
 const setFinalValues = (newValue) => {
     valueA =  newValue;
     valueB = "";  
-    operator = "";
+    operator = ""; //this sets the final values after different conditions of the handleEqual function that calls it.
 }
 const handleEqual = (e) => {
-  console.log(valueA, valueB, operator, "inputEqual");
-  if (operator == "" && valueB == "") {
-    return; //this will ensure that valueA and valueB don't change to float and affect the flow of next clicks
+  if (operator == "" || valueB == "") {
+    return; //If operator or valueB is empty, then the program returns from the function.This ensures that valueA and valueB don't change to float and affect the flow of next clicks.
   }
-  console.log(valueA, valueB, operator, "outputEqualA");
   valueA = parseFloat(valueA); 
   valueB = parseFloat(valueB);
   if (operator == "+") {
@@ -61,59 +59,51 @@ const handleEqual = (e) => {
 
 const handleNumber = (e) => {
   if (operator.length > 0) {
-    valueB += e.target.innerHTML;
-    input.value = valueA + operator + valueB;
+    valueB += e.target.innerHTML; //if operator exists, then the clicked number is added to valueB
+    input.value = valueA + operator + valueB; //this ensures the display-bar(input) shows all the clicked values.
   } else {
-    valueA += e.target.innerHTML;
-    input.value = valueA;
+    valueA += e.target.innerHTML; //if operator doesn't exist, then the clicked number is added to valueA
+    input.value = valueA; //display-bar shows valueA
   }
 }
 
 const handleDecimal = (e) => {
   if (operator == "" && valueA.includes(".")) {
-    return;
+    return; //This ensure valueA does not add another decimal point when one already exists.
    }
   else if (operator.length > 0 && valueB.includes(".")) {
-   return;
+   return; //This ensure valueB does not add another decimal point when one already exists.
   }
   else {
-    handleNumber(e);
+    handleNumber(e); //this function is called when either valueA or valueB do not have an existing decimal; the decimal is added to valueA/valueB as any other number would be.
   }
 }
 
 const handleOperator = (e) => {
-  console.log(valueA, valueB, operator, "inputOperator");
   if (operator == "" && valueA.length > 0)  {
-    console.log(valueA, valueB, operator, "OutputA");
   operator = e.target.innerHTML;
-  input.value += e.target.innerHTML;
+  input.value += e.target.innerHTML; //If operator variable is empty and valueA exists, then the clicked operator is added to the operator variable, and the input value.
   }
   else if (operator.length > 0) {
-    console.log(valueA, valueB, operator, "OutputB");
-  handleEqual(); //this will make sure the existing operation is performed before the next operation
+  handleEqual(); //this ensures that the existing operation is performed before the next operation.
   }
   else if (valueA.length == 0) {
-    console.log(valueA, valueB, operator, "OutputC");
     input.value = "Please enter a value first"; //this will prevent operator from being passed before valueA
   }
 }
 
 const handleChangeSign = (e) => {
-  console.log(valueA, "inputA");
-  console.log(valueB, "inputB");
   if (valueB.length > 0) {
     valueB = `${-parseFloat(valueB)}`; //this is to ensure that the value is converted back to string after the change of sign for other functions that require it as string.
-    input.value = valueA + operator + valueB;
+    input.value = valueA + operator + valueB; //If valueB exists, then it's sign will be changed, and display-bar(input) will display updated valueA, operator, and valueB.
     console.log(valueB, "outputB");
   } else if (valueA.length > 0) {
     valueA = `${-parseFloat(valueA)}`;
-    input.value = valueA + operator;
-    console.log(valueA, operator, "outputA");
+    input.value = valueA + operator; //If valueA exists, then it's sign will be changed, and display-bar(input) will display updated valueA and operator.
   } 
 }
 
-
-
+//the following code adds click event listeners to html objects(or array of objects) taken from DOM.
 cancelButton.addEventListener("click", handleCancel)
 
 equalButton.addEventListener("click", handleEqual)
@@ -157,10 +147,10 @@ changeSignButton.addEventListener("click", handleChangeSign)
       //If decimal is pressed when another decimal exist, it's still adding that to the number (FIXED: Create separate button class for decimal than number, and make handleDecimal function. Add an if statement to check for existing decimal value in valueA and valueB. If valueA/valueB includes decimal, then return, else proceed with handleNumber.)
 
       //If equal is pressed after valueA or after valueA + operator, the operators pressed after that are not adding up in the input value (debugged: It is because the handleEqual function is converting valueA and ValueB from string to float, and then converting them back to string within the if statements. But if equal is pressed when the operator is empty, none of the if statements are run and the float values don't get changed back to string.) 
-      //(FIXED: add an if statement in the beginning for cases where operator or valueB is empty and return from the function).
+      //(FIXED: add an if statement in the beginning of handleEqual function for cases where operator or valueB is empty and return from the function).
 
-      //If operator is pressed after changeSign, it was not being added to the display-bar (debugged: this was because changeSign function was changing the sign on string values, which was causing value.length to be undefined in handleOperator. 
-      //(FIXED: by converting valueA and valueB to float, and then back to string, in changeSign function.)
+      //If operator is pressed after changeSign, it is not being added to the display-bar (debugged: this is because changeSign function is changing the sign on string values, which is causing value.length to be undefined in handleOperator. 
+      //(FIXED: convert valueA and valueB to float, and then back to string, in changeSign function.)
 
 
    
