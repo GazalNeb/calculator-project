@@ -4,7 +4,8 @@
 const numberButtons = document.querySelectorAll(".number");
 const operatorButtons = document.querySelectorAll(".operator");
 const decimalButton = document.querySelector(".decimal");
-const cancelButton = document.querySelector(".cancel");
+const clearAllButton = document.querySelector(".clear-all");
+const clearOneButton = document.querySelector(".clear-one");
 const changeSignButton = document.querySelector(".change-sign");
 const equalButton = document.querySelector(".equal");
 const input = document.querySelector("input");
@@ -15,18 +16,37 @@ let valueA = "";
 let valueB = ""; 
 
 //functions to handle button clicks of different types:
-const handleCancel = (e) => {
+const handleClearAll = (e) => {
   operator = "";
   valueA = "";
   valueB = "";
-  input.value = ""; //this ensures all variables and input value become empty strings when cancel button is clicked.
+  input.value = ""; //this ensures all variables and input value become empty strings when clear-all button is clicked.
+}
+
+const handleClearOne = (e) => {
+  if (valueB.length > 0) {
+    valueB = valueB.slice(0,-1);
+    input.value = valueA + operator + valueB; //this will remove one string from the end of valueB if it exists and display all the updated values.
+  }
+  else if (operator.length > 0) {
+    operator = operator.slice(0,-1);
+    input.value = valueA; //this will remove the operator if it exists and display valueA.
+  }
+  else if (valueA.length > 0) {
+    valueA = valueA.slice(0,-1);
+    input.value = valueA; //this will remove one string from the end of valueA if it exists and display the updated valueA.
+  }
+  else {
+    return; //this will ensure that the program exits the function when all the variables are empty.
+  }
 }
 
 const setFinalValues = (newValue) => {
     valueA =  newValue;
     valueB = "";  
-    operator = ""; //this sets the final values after different conditions of the handleEqual function that calls it.
+    operator = ""; //this sets the final values after different conditions of the handleEqual function, which calls it.
 }
+
 const handleEqual = (e) => {
   if (operator == "" || valueB == "") {
     return; //If operator or valueB is empty, then the program returns from the function.This ensures that valueA and valueB don't change to float and affect the flow of next clicks.
@@ -82,7 +102,7 @@ const handleDecimal = (e) => {
 const handleOperator = (e) => {
   if (operator == "" && valueA.length > 0)  {
   operator = e.target.innerHTML;
-  input.value += e.target.innerHTML; //If operator variable is empty and valueA exists, then the clicked operator is added to the operator variable, and the input value.
+  input.value += e.target.innerHTML; //If operator variable is empty and valueA exists, then the clicked operator is added to the operator variable and the input value.
   }
   else if (operator.length > 0) {
   handleEqual(); //this ensures that the existing operation is performed before the next operation.
@@ -104,13 +124,16 @@ const handleChangeSign = (e) => {
 }
 
 //the following code adds click event listeners to html objects(or array of objects) taken from DOM.
-cancelButton.addEventListener("click", handleCancel)
+clearAllButton.addEventListener("click", handleClearAll)
+
+clearOneButton.addEventListener("click", handleClearOne)
 
 equalButton.addEventListener("click", handleEqual)
 
 numberButtons.forEach(button => {
   button.addEventListener("click", handleNumber)
 })
+
 decimalButton.addEventListener("click", handleDecimal)
 
 operatorButtons.forEach(button => {
