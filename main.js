@@ -27,6 +27,7 @@ const setFinalValues = (newValue) => {
     valueB = "";  
     operator = ""; //this sets the final values after different conditions of the handleEqual function that calls it.
 }
+
 const handleEqual = (e) => {
   if (operator == "" || valueB == "") {
     return; //If operator or valueB is empty, then the program returns from the function.This ensures that valueA and valueB don't change to float and affect the flow of next clicks.
@@ -111,6 +112,7 @@ equalButton.addEventListener("click", handleEqual)
 numberButtons.forEach(button => {
   button.addEventListener("click", handleNumber)
 })
+
 decimalButton.addEventListener("click", handleDecimal)
 
 operatorButtons.forEach(button => {
