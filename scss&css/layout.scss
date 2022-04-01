@@ -2,7 +2,7 @@
   margin: 10rem auto;
   width: 22rem;
   height: 28rem;
-  background-color: rosybrown;
+  background-color: $color-primary;
   box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);
   border-radius: 1rem;
   display: flex;
@@ -16,7 +16,7 @@
     border-radius: 1rem;
     box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);
     border: none;
-    background-color: #fafafa;
+    background-color: $color-white;
     font-family: sans-serif;
     font-size: large;
   }
@@ -30,17 +30,17 @@
       width: 3rem;
       height: 3rem;
       border-radius: 2rem;
-      border:#4B4747;
-      color: #fafafa;
+      border:$color-secondary;
+      color: $color-white;
       font-size: large;
-      background-color: #4B4747;
+      background-color: $color-secondary;
 
       &--grey {
-        background-color: #708090;
+        background-color: $color-tertiary;
       }
 
       &--color {
-        background-color: #cd5c5c;
+        background-color: $color-accent;
       }
     }
 
