@@ -28,9 +28,11 @@ const setFinalValues = (newValue) => {
     operator = "";
 }
 const handleEqual = (e) => {
-  if (operator == "" || valueB == "") {
+  console.log(valueA, valueB, operator, "inputEqual");
+  if (operator == "" && valueB == "") {
     return; //this will ensure that valueA and valueB don't change to float and affect the flow of next clicks
   }
+  console.log(valueA, valueB, operator, "outputEqualA");
   valueA = parseFloat(valueA); 
   valueB = parseFloat(valueB);
   if (operator == "+") {
@@ -80,26 +82,33 @@ const handleDecimal = (e) => {
 }
 
 const handleOperator = (e) => {
+  console.log(valueA, valueB, operator, "inputOperator");
   if (operator == "" && valueA.length > 0)  {
+    console.log(valueA, valueB, operator, "OutputA");
   operator = e.target.innerHTML;
   input.value += e.target.innerHTML;
   }
   else if (operator.length > 0) {
+    console.log(valueA, valueB, operator, "OutputB");
   handleEqual(); //this will make sure the existing operation is performed before the next operation
   }
   else if (valueA.length == 0) {
+    console.log(valueA, valueB, operator, "OutputC");
     input.value = "Please enter a value first"; //this will prevent operator from being passed before valueA
   }
 }
 
 const handleChangeSign = (e) => {
+  console.log(valueA, "inputA");
+  console.log(valueB, "inputB");
   if (valueB.length > 0) {
     valueB = -valueB;
     input.value = valueA + operator + valueB;
-
+    console.log(valueB, "outputB");
   } else if (valueA.length > 0) {
     valueA = -valueA;
     input.value = valueA + operator;
+    console.log(valueA, "outputA");
   } 
 }
 
