@@ -44,7 +44,9 @@
       }
     }
 
+    .button:hover {
+      border: 2px solid $color-white;
+    }
   }
 
-  
 }
