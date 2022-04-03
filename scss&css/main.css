@@ -46,3 +46,6 @@
 .container .buttons .button--color {
   background-color: #cd5c5c;
 }
+.container .buttons .button:hover {
+  border: 2px solid #fafafa;
+}
