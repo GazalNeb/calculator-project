@@ -1,6 +1,6 @@
 This calculator is developed using JavaScript, HTML, and CSS(SCSS) as the second project of the software development course by _Nology.
 
-The comments in the main.js file explain the approach taken to build the calculator step-by-step. At the end of the code, there is a summary of steps taken to approach the problem. It also lists the problems encountered during the process and the steps taken to fix those problems.
+The comments in the main.js file explain the approach taken to build the calculator step-by-step. At the end of the code, there is a summary of steps taken to approach the problem. It also lists the problems encountered during the process and the steps taken to fix them.
 
 The calculator performs the following operations on any two values (integer or decimal) at a given time:
 1. Addition (+)
@@ -20,11 +20,12 @@ If an operator is clicked before a number, the message "Please enter a value fir
 
 The display looks like this:
 
-![Alt text](./images/Calculator.JPG "Calculator")
+![Alt text](./images/Calculator.JPG "screenshot of my calculator")
 
+The design is responsive to devices of various sizes.
 
 Steps to be taken to make it better: 
-1. To make it take multiple values and operators together and solve them using BODMAS
-2. To limit the number of digits that can be added to a number
+1. To make it take multiple values and operators together and solve them using BODMAS.
+2. To limit the number of digits that can be added to a number.
 3. To round off values to two digits after the decimal point. Currently, it displays as many digits as possible.
 3. To display an error message if a number is divided by zero. At present, the answer comes to infinity.
