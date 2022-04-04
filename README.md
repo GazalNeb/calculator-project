@@ -16,7 +16,7 @@ The CA button clears all the values in the display-bar, and C1 button removes on
 
 If the decimal button is clicked when a value already has a decimal, it does not add an additional decimal to it.
 
-If an operator is clicked before a number, the message "Please enter a value first" is displayed in the display-bar
+If an operator is clicked before a number, the message "Please enter a value first" is displayed on the display-bar.
 
 The display looks like this:
 
