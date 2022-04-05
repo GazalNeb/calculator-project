@@ -1,6 +1,10 @@
+**About** 
+
 This calculator is developed using JavaScript, HTML, and CSS(SCSS) as the second project of the software development course by _Nology.
 
 The comments in the main.js file explain the approach taken to build the calculator step-by-step. At the end of the code, there is a summary of steps taken to approach the problem. It also lists the problems encountered during the process and the steps taken to fix them.
+
+**Operations** 
 
 The calculator performs the following operations on any two values (integer or decimal) at a given time:
 1. Addition (+)
@@ -16,15 +20,19 @@ The CA button clears all the values in the display-bar, and C1 button removes on
 
 If the decimal button is clicked when a value already has a decimal, it does not add an additional decimal to it.
 
-If an operator is clicked before a number, the message "Please enter a value first" is displayed on the display-bar.
+If an operator is clicked before a number, the message "Please enter a value first" is displayed on the display-bar
 
-The display looks like this:
+
+**The display looks like this:**
+
 
 ![Alt text](./images/Calculator.JPG "screenshot of my calculator")
 
-The design is responsive to devices of various sizes.
+_The design is responsive to devices of various sizes._
 
-Steps to be taken to make it better: 
+
+**Steps to be taken to make it better:** 
+
 1. To make it take multiple values and operators together and solve them using BODMAS.
 2. To limit the number of digits that can be added to a number.
 3. To round off values to two digits after the decimal point. Currently, it displays as many digits as possible.
