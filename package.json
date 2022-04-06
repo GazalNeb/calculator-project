@@ -1,0 +1,23 @@
+{
+  "name": "calculator-project",
+  "version": "1.0.0",
+  "description": "This calculator is developed using JavaScript, HTML, and CSS(SCSS) as the second project of the software development course by _Nology. It can be found at: https://gazalneb.github.io/calculator-project/",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GazalNeb/calculator-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GazalNeb/calculator-project/issues"
+  },
+  "homepage": "https://github.com/GazalNeb/calculator-project#readme",
+  "devDependencies": {
+    "cypress": "^9.5.3"
+  }
+}
